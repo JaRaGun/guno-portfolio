@@ -8,12 +8,33 @@
     <style>
       body{
         margin: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+      .font-exo{
+        font-family: 'Exo 2', sans-serif;
+      }
+
+      .font-space-mono{
+      font-family: 'Space Mono', monospace;
       }
 
     </style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&family=Space+Mono&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" class="absolute text-white text-center font-space-mono"
+    style="top: 50%; transform:translate(-50%, -50%); left: 50%;">
+      <div id="container">
+        <h1 id="name" class="text-sm opacity-0" style="transform: translateY(30px)">Jan Rafael C. Guno</h1>
+        <p id="intro" class="font-exo uppercase text-4xl opacity-0" style="transform: translateY(30px)">
+          Welcome! Explore my work as a Full Stack Web Developer, where design meets functionality.
+        </p>
+        <a style="transform: translateY(30px)" id="view-btn" target="_blank" href="" class="opacity-0 border px-4 py-2 uppercase mt-8 hover:bg-white hover:text-gray-800 inline-block">View work</a>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
