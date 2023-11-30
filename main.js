@@ -100,6 +100,21 @@ const backLight = new THREE.DirectionalLight(0xffffff, 1)
 backLight.position.set(0, 0, -1)
 scene.add(backLight)
 
+const starGeometry = new THREE.BufferGeometry()
+const starMaterial = new THREE.PointsMaterial({ color: 0xffffff })
+
+const starVertices = []
+for (let i = 0; i < 10000; i++) {
+  const x = (Math.random() - 0.5) * 2000
+  const y = (Math.random() - 0.5) * 2000
+  const z = (Math.random() - 0.5) * 2000
+
+  starVertices.push(x, y, z)
+}
+
+starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3))
+const stars = new THREE.Points(starGeometry, starMaterial)
+scene.add(stars)
 const mouse = {
   x: undefined,
   y: undefined
@@ -185,6 +200,7 @@ function animate() {
       }
     })
   }
+  stars.rotation.x += 0.0005
 }
 
 animate()
@@ -192,4 +208,58 @@ animate()
 addEventListener('mousemove', (event) => {
   mouse.x = (event.clientX / innerWidth) * 2 - 1
   mouse.y = -(event.clientY / innerHeight) * 2 + 1
+})
+
+
+
+gsap.to("#name",{
+  opacity: 1,
+  duration: 2,
+  y: 0,
+  ease: 'expo'
+})
+gsap.to("#intro",{
+  opacity: 1,
+  duration: 2,
+  delay: 0.4,
+  y: 0,
+  ease: 'expo'
+})
+gsap.to("#view-btn", {
+  opacity: 1,
+  duration: 2,
+  delay: 0.8,
+  y: 0,
+  ease: 'expo'
+})
+
+document.getElementById("view-btn").addEventListener("click", function(e){
+  e.preventDefault();
+  console.log("clicked");
+
+  gsap.to("#container",{
+    opacity:0
+  })
+
+  gsap.to(camera.position,{
+    z:25,
+    duration: .5,
+    ease: 'power3.inOut'
+  })
+
+  gsap.to(camera.rotation,{
+    x:1.57,
+    duration: 2,
+    delay: 0.5,
+    ease: 'power3.inOut'
+  })
+
+  gsap.to(camera.position,{
+    y:1000,
+    duration: 2,
+    ease: 'power3.in',
+    delay: 2
+  })
+
+
 })
