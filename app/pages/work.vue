@@ -3,7 +3,7 @@
     <h1 id="title" class="text-white font-exo text-5xl opacity-0" style="transform: translateY(30px);">MY WORK</h1>
     <div class="flex space-x-4">
       <div ref="projectsElement" v-for="project in projectsData" :key="project.id" class="opacity-0 w-full" style="transform: translateX(30px);">
-        <nuxt-link :to="`/work/${project.id}`">
+        <nuxt-link :to="`/`">
           <img :src="project.image" :alt="project.title" style="height: 70vh" class="object-cover ">
           <p class="text-white font-space-mono text-sm">{{ project.title }}</p>
         </nuxt-link>
