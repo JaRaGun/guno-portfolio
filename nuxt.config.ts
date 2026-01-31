@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  nitro: {
+    preset: 'netlify'
+  },
   modules: ['@nuxtjs/tailwindcss', ['@nuxtjs/google-fonts', {
     families: {
       'Exo 2': {
