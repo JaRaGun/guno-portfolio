@@ -1,3 +1,10 @@
+:root {
+    --cyber-dark: #050505;
+    --cyber-grid: #1a1a1a;
+    --cyber-accent: #00ffff;
+    --cyber-glow: rgba(0, 255, 255, 0.5);
+}
+
 html,
 body,
 #__nuxt,
@@ -6,6 +13,70 @@ body,
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    background-color: #000;
+    overflow-x: hidden;
+    background-color: var(--cyber-dark);
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+    background-image:
+        linear-gradient(var(--cyber-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cyber-grid) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--cyber-accent);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+/* Glow Text */
+.glow-text {
+    text-shadow: 0 0 10px var(--cyber-glow);
+}
+
+/* Anti-Gravity Enabled */
+.anti-gravity-enabled {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Magnetic Effect Container */
+.magnetic-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+/* Smooth Transitions */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cyber-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--cyber-grid);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cyber-accent);
 }
