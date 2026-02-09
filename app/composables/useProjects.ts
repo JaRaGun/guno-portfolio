@@ -54,10 +54,29 @@ export const useProjects = () => {
         }
     }
 
-    const getImageUrl = (imageRef: any, width = 800) => {
-        if (!imageRef) return ''
-        const { urlFor } = require('~/lib/sanity')
-        return urlFor(imageRef).width(width).url()
+    const getImageUrl = (imageRef: any, width = 1600) => {
+        try {
+            if (!imageRef) return ''
+            // Use the sanity CDN URL directly
+            if (imageRef.asset && imageRef.asset._ref) {
+                const projectId = 'b5uobbbz'
+                const dataset = 'production'
+                const imageId = imageRef.asset._ref
+                // Convert ref format to CDN URL
+                // Format: image-{assetId}-{dimensions}-{format}
+                const parts = imageId.split('-')
+                if (parts.length >= 4) {
+                    const assetId = parts.slice(1, -2).join('-')
+                    const dimensions = parts[parts.length - 2]
+                    const format = parts[parts.length - 1]
+                    return `https://cdn.sanity.io/images/${projectId}/${dataset}/${assetId}-${dimensions}.${format}?w=${width}&q=90&auto=format`
+                }
+            }
+            return ''
+        } catch (error) {
+            console.error('Error generating image URL:', error)
+            return ''
+        }
     }
 
     return {

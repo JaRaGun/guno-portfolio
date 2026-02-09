@@ -96,10 +96,10 @@ export const useAntiGravity = (
 
             const rect = element.getBoundingClientRect()
             const isInRange =
-                mouse.value.x >= rect.left - 100 &&
-                mouse.value.x <= rect.right + 100 &&
-                mouse.value.y >= rect.top - 100 &&
-                mouse.value.y <= rect.bottom + 100
+                mouse.value.x >= rect.left - 20 &&
+                mouse.value.x <= rect.right + 20 &&
+                mouse.value.y >= rect.top - 20 &&
+                mouse.value.y <= rect.bottom + 20
 
             applyAntiGravityEffect(element, isInRange && isHovering.value)
         })

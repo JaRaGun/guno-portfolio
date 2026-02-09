@@ -7,8 +7,14 @@ export default defineConfig({
     name: 'default',
     title: 'Guno Portfolio',
 
-    projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id',
-    dataset: process.env.NUXT_PUBLIC_SANITY_DATASET || 'production',
+    projectId: 'b5uobbbz',
+    dataset: 'production',
+
+    // API version for queries (use today's date or your preferred version)
+    apiVersion: '2024-01-01',
+
+    // Base path for the studio (if embedded in Nuxt)
+    basePath: '/studio',
 
     plugins: [deskTool(), visionTool()],
 

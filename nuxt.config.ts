@@ -5,17 +5,30 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify'
   },
-  modules: ['@nuxtjs/tailwindcss', ['@nuxtjs/google-fonts', {
-    families: {
-      'Exo 2': {
-        ital: [700]
+  modules: [
+    '@nuxtjs/tailwindcss',
+    ['@nuxtjs/google-fonts', {
+      families: {
+        'Exo 2': {
+          ital: [700]
+        },
+        'Space Mono': [400, 700]
       },
-      'Space Mono': [400, 700]
-    },
-    display: 'swap',
-    preconnect: true,
-    download: true
-  }]],
+      display: 'swap',
+      preconnect: true,
+      download: true
+    }], ['@nuxtjs/sanity']],
   css: ['~/assets/css/main.css'],
+  sanity: {
+    projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NUXT_PUBLIC_SANITY_DATASET || 'production',
+    apiVersion: '2024-01-01',
+    visualEditing: {
+      studioUrl: 'http://localhost:3333',
+      stega: true,
+    },
+  },
 
+  // Note: @nuxtjs/sanity doesn't embed Sanity Studio in Nuxt
+  // Instead, run Studio separately with: npx sanity dev
 })
