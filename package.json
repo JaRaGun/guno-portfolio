@@ -3,10 +3,11 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "npm run build:studio && nuxt build",
     "dev": "nuxt dev",
     "dev:studio": "sanity dev --port 3333",
-    "generate": "nuxt generate",
+    "build:studio": "sanity build public/studio -y",
+    "generate": "npm run build:studio && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
