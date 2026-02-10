@@ -1,8 +1,16 @@
 [build]
   command = "npm run build"
-  publish = ".output/public"
+  publish = "dist"
+
+# Serve Sanity Studio static files BEFORE Nuxt's serverless function
+[[redirects]]
+  from = "/studio"
+  to = "/studio/index.html"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/studio/*"
-  to = "/studio/index.html"
+  to = "/studio/:splat"
   status = 200
+  force = true

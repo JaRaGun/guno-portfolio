@@ -1,0 +1,13 @@
+{
+  "date": "2026-02-10T13:54:32.034Z",
+  "preset": "netlify",
+  "framework": {
+    "name": "nuxt",
+    "version": "4.3.1"
+  },
+  "versions": {
+    "nitro": "2.13.1"
+  },
+  "commands": {},
+  "config": {}
+}
