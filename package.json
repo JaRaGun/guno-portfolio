@@ -6,7 +6,7 @@
     "build": "npm run build:studio && nuxt build",
     "dev": "nuxt dev",
     "dev:studio": "sanity dev --port 3333",
-    "build:studio": "sanity build public/studio -y",
+    "build:studio": "sanity build public/studio --base-path /studio/ -y && ./fix-studio-paths.sh",
     "generate": "npm run build:studio && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
