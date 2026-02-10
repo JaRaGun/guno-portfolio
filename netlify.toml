@@ -3,7 +3,7 @@
   publish = ".output/public"
   functions = ".output/server"
 
-# Serve Sanity Studio static files BEFORE Nuxt's serverless function
+# Serve Sanity Studio static files
 [[redirects]]
   from = "/studio"
   to = "/studio/index.html"
@@ -15,9 +15,3 @@
   to = "/studio/:splat"
   status = 200
   force = true
-
-# Catch-all for Nuxt routing (Fixes 404 on refresh)
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/server"
-  status = 200
