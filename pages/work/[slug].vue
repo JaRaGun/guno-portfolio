@@ -51,7 +51,8 @@
               <span
                 v-for="tech in project.techStack"
                 :key="tech"
-                class="px-3 py-1.5 text-sm font-space-mono bg-cyber-accent/10 text-cyber-accent border border-cyber-accent/30 rounded hover:bg-cyber-accent/20 transition-colors"
+                class="px-3 py-1.5 text-sm font-space-mono bg-cyber-accent/10 !text-white border border-cyber-accent/30 rounded hover:bg-cyber-accent/20 transition-colors"
+                style="color: white !important;"
               >
                 {{ tech }}
               </span>
@@ -63,7 +64,8 @@
               :href="project.projectUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-2 bg-cyber-accent text-cyber-dark font-space-mono text-sm font-bold rounded hover:bg-white transition-colors group"
+              
+              class="inline-flex items-center gap-2 px-4 py-2 bg-cyber-accent text-white font-space-mono text-sm font-bold border rounded hover:bg-white hover:text-black transition-colors group"
             >
               <span>Visit Project</span>
               <svg class="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

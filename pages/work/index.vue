@@ -4,14 +4,14 @@
     <header class="px-6 py-12">
       <h1 
         id="title" 
-        class="text-white font-exo text-6xl md:text-7xl font-bold opacity-0 glow-text"
+        class="mt-10 text-white font-exo text-6xl md:text-7xl font-bold opacity-0 glow-text"
         style="transform: translateY(30px);"
       >
         MY WORK
       </h1>
       <p 
         id="subtitle"
-        class="text-cyber-accent font-space-mono text-sm mt-4 opacity-0"
+        class="text-cyber-accent text-white font-space-mono text-sm mt-4 opacity-0"
         style="transform: translateY(20px);"
       >
         {{ loading ? 'Loading projects...' : `${projects.length} Projects` }}
@@ -102,9 +102,10 @@
                     :class="[
                       'px-3 py-1.5 text-sm font-space-mono font-bold rounded shadow-lg transition-all border-2',
                       selectedTechFilter === tech
-                        ? 'bg-[#00E5FF] text-white border-white scale-105'
-                        : 'bg-[#00C9FF] text-white border-[#00E5FF] hover:bg-[#00E5FF] hover:scale-105'
+                        ? 'bg-[#00E5FF] !text-white border-white scale-105'
+                        : 'bg-[#00C9FF] !text-white border-[#00E5FF] hover:bg-[#00E5FF] !hover:text-white hover:scale-105'
                     ]"
+                    style="color: white !important;"
                   >
                     {{ tech }}
                   </button>

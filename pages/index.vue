@@ -88,7 +88,19 @@ onMounted(async () => {
   window.addEventListener('mousemove', onMouseMove)
 
   const dat = await import('dat.gui')
-  gui = new dat.GUI()
+  gui = new dat.GUI({ autoPlace: false })
+  const guiContainer = document.createElement('div')
+  guiContainer.style.position = 'absolute'
+  guiContainer.style.bottom = '20px'
+  guiContainer.style.right = '20px'
+  guiContainer.style.zIndex = '100'
+  threeContainer.value.appendChild(guiContainer)
+  guiContainer.appendChild(gui.domElement)
+  
+  // Style the GUI to match the theme
+  gui.domElement.style.marginTop = '0'
+  const guiMain = gui.domElement.querySelector('.main')
+  if (guiMain) guiMain.style.width = '245px'
   
   const world = {
     plane: { width: 400, height: 400, widthSegments: 50, heightSegments: 50 }

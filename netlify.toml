@@ -14,3 +14,9 @@
   to = "/studio/:splat"
   status = 200
   force = true
+
+# Catch-all for Nuxt routing (Fixes 404 on refresh)
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200

@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   nitro: {
-    preset: 'netlify',
+    preset: process.env.NETLIFY ? 'netlify' : undefined,
   },
   routeRules: {
     '/studio/**': { isr: false, prerender: false },
@@ -20,7 +20,9 @@ export default defineNuxtConfig({
       display: 'swap',
       preconnect: true,
       download: true
-    }], ['@nuxtjs/sanity']],
+    }],
+    '@nuxtjs/sanity'
+  ],
   css: ['~/assets/css/main.css'],
   sanity: {
     projectId: process.env.NUXT_PUBLIC_SANITY_PROJECT_ID,
@@ -31,7 +33,4 @@ export default defineNuxtConfig({
       stega: true,
     },
   },
-
-  // Note: @nuxtjs/sanity doesn't embed Sanity Studio in Nuxt
-  // Instead, run Studio separately with: npx sanity dev
 })
