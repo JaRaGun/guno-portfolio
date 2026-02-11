@@ -8,35 +8,50 @@
         <div id="contact-form" class="glass-card p-8 rounded-xl opacity-0 translate-y-[30px]">
           <form @submit.prevent="handleSubmit" class="space-y-6">
             <div>
-              <label class="block text-cyber-accent text-white font-space-mono text-xs uppercase tracking-widest mb-2">Name</label>
+              <label class="block text-white font-space-mono text-xs uppercase tracking-widest mb-2">Name</label>
               <input 
+                v-model="form.name"
                 type="text" 
+                required
                 class="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white font-space-mono focus:border-cyber-accent outline-none transition-colors"
                 placeholder="YOUR NAME"
               />
             </div>
             <div>
-              <label class="block text-cyber-accent text-white font-space-mono text-xs uppercase tracking-widest mb-2">Email</label>
+              <label class="block text-white font-space-mono text-xs uppercase tracking-widest mb-2">Email</label>
               <input 
+                v-model="form.email"
                 type="email" 
+                required
                 class="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white font-space-mono focus:border-cyber-accent outline-none transition-colors"
                 placeholder="YOUR@EMAIL.COM"
               />
             </div>
             <div>
-              <label class="block text-cyber-accent text-white font-space-mono text-xs uppercase tracking-widest mb-2">Message</label>
+              <label class="block text-white font-space-mono text-xs uppercase tracking-widest mb-2">Message</label>
               <textarea 
+                v-model="form.message"
                 rows="4"
+                required
                 class="w-full bg-white/5 border border-white/10 rounded-sm p-3 text-white font-space-mono focus:border-cyber-accent outline-none transition-colors"
                 placeholder="HOW CAN I HELP YOU?"
               ></textarea>
             </div>
             <button 
               type="submit"
-              class="w-full py-4 bg-cyber-accent text-white text-cyber-dark font-exo font-bold uppercase tracking-widest hover:text-black hover:bg-white transition-colors"
+              :disabled="loading"
+              class="w-full py-4 bg-cyber-accent text-white font-exo font-bold uppercase tracking-widest hover:text-black hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Signal
+              {{ loading ? 'Sending Signal...' : 'Send Signal' }}
             </button>
+
+            <!-- Success/Error Feedback -->
+            <p v-if="success" class="text-green-400 font-space-mono text-sm mt-4 text-center animate-pulse">
+              Signal received! I'll get back to you soon.
+            </p>
+            <p v-if="error" class="text-red-400 font-space-mono text-sm mt-4 text-center">
+              {{ errorMessage || 'Transmission failed. Please try again or use direct email.' }}
+            </p>
           </form>
         </div>
 
@@ -76,15 +91,45 @@
 import gsap from 'gsap'
 import { Github, Linkedin, Mail, Twitter } from 'lucide-vue-next'
 
+const config = useRuntimeConfig()
 const socialLinks = [
   { label: 'GitHub', value: 'github.com/guno-dev', url: 'https://github.com/JaRaGun', icon: Github },
   { label: 'LinkedIn', value: 'linkedin.com/in/jan-rafael-guno', url: 'https://www.linkedin.com/in/jan-rafael-guno-0145431b7/', icon: Linkedin },
-  { label: 'Email', value: 'janrafaelcabrillosguno@gmail.com', url: 'mailto:[EMAIL_ADDRESS]', icon: Mail },
+  { label: 'Email', value: config.public.email, url: 'mailto:' + config.public.email, icon: Mail },
   { label: 'X / Twitter', value: '@guno_dev', url: 'https://twitter.com/@guno_jan', icon: Twitter }
 ]
 
-const handleSubmit = () => {
-  alert('Signal received! (This is a demo)')
+const form = ref({
+  name: '',
+  email: '',
+  message: ''
+})
+
+const loading = ref(false)
+const success = ref(false)
+const error = ref(false)
+const errorMessage = ref('')
+
+const handleSubmit = async () => {
+  loading.value = true
+  success.value = false
+  error.value = false
+  errorMessage.value = ''
+
+  try {
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: form.value
+    })
+    
+    success.value = true
+    form.value = { name: '', email: '', message: '' } // Reset form
+  } catch (err) {
+    error.value = true
+    errorMessage.value = err.statusMessage || 'Failed to send message.'
+  } finally {
+    loading.value = false
+  }
 }
 
 onMounted(() => {
@@ -95,4 +140,5 @@ onMounted(() => {
     .to('#contact-form', { opacity: 1, y: 0, duration: 1.5 }, '-=1.2')
     .to('#contact-info', { opacity: 1, y: 0, duration: 1.5 }, '-=1.2')
 })
+
 </script>

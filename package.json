@@ -26,6 +26,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.4",
+    "resend": "^6.9.2",
     "sanity": "^3.99.0",
     "styled-components": "^6.3.9",
     "three": "^0.126.1",

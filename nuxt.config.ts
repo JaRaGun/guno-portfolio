@@ -34,4 +34,10 @@ export default defineNuxtConfig({
       stega: true,
     },
   },
+  runtimeConfig: {
+    resendApiKey: process.env.RESEND_API_KEY,
+    public: {
+      email: process.env.NUXT_PUBLIC_EMAIL,
+    },
+  },
 })
